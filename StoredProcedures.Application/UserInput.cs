@@ -6,6 +6,7 @@ namespace StoredProcedures.Application
 	{
 		private bool _quit;
 
+
 		public void Initialize()
 		{
 			Client client = new Client();
@@ -49,25 +50,53 @@ namespace StoredProcedures.Application
 			switch (number)
 			{
 				case 1:
-					client.CreateDepartment();
+				{
+					Console.Write("DName: ");
+					string dName = Console.ReadLine();
+					Console.Write("MgrSSN: ");
+					string mgrSSN = Console.ReadLine();
+					client.CreateDepartment(dName, mgrSSN);
 					break;
+				}
 				case 2:
-					client.UpdateDepartmentName();
+				{
+					Console.Write("DNumber: ");
+					string dNumber = Console.ReadLine();
+					Console.Write("DName: ");
+					string dName = Console.ReadLine();
+					client.UpdateDepartmentName(dNumber, dName);
 					break;
+				}
 				case 3:
-					client.UpdateDepartmentManager();
+				{
+					Console.Write("DName: ");
+					string dName = Console.ReadLine();
+					Console.Write("MgrSSN: ");
+					string mgrSSN = Console.ReadLine();
+					client.UpdateDepartmentManager(dName, mgrSSN);
 					break;
+				}
 				case 4:
-					client.DeleteDepartment();
+				{
+					Console.Write("DNumber: ");
+					string dNumber = Console.ReadLine();
+					client.DeleteDepartment(dNumber);
 					break;
+				}
 				case 5:
-					client.GetDepartment();
+				{
+					Console.Write("DNumber: ");
+					string dNumber = Console.ReadLine();
+					client.GetDepartment(dNumber);
 					break;
+				}
 				case 6:
+				{
 					client.GetAllDepartments();
 					break;
+				}
 			}
-			Console.WriteLine($"Chose procedure {number}");
+			Console.WriteLine($"Executed procedure {number}");
 		}
 	}
 }
