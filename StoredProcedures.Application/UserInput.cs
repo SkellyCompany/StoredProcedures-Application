@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StoredProcedures.Application
 {
@@ -55,7 +56,11 @@ namespace StoredProcedures.Application
 					string dName = Console.ReadLine();
 					Console.Write("MgrSSN: ");
 					string mgrSSN = Console.ReadLine();
-					client.CreateDepartment(dName, mgrSSN);
+					int dNumber = client.CreateDepartment(dName, mgrSSN);
+					Console.WriteLine();
+					Console.WriteLine("-Department-");
+					Console.WriteLine($"DNumber: {dNumber}");
+					Console.WriteLine();
 					break;
 				}
 				case 2:
@@ -69,7 +74,7 @@ namespace StoredProcedures.Application
 				}
 				case 3:
 				{
-					Console.Write("DName: ");
+					Console.Write("DNumber: ");
 					string dName = Console.ReadLine();
 					Console.Write("MgrSSN: ");
 					string mgrSSN = Console.ReadLine();
@@ -87,12 +92,31 @@ namespace StoredProcedures.Application
 				{
 					Console.Write("DNumber: ");
 					string dNumber = Console.ReadLine();
-					client.GetDepartment(dNumber);
+					Department department = client.GetDepartment(dNumber);
+					Console.WriteLine();
+					Console.WriteLine("-Department-");
+					Console.WriteLine($"DName: {department.DName}");
+					Console.WriteLine($"DNumber: {department.DNumber}");
+					Console.WriteLine($"MgrSSN:	{department.MgrSSN}");
+					Console.WriteLine($"MgrStartDate: {department.MgrStartDate}");
+					Console.WriteLine($"EmpCount: {department.EmpCount}");
+					Console.WriteLine();
 					break;
 				}
 				case 6:
 				{
-					client.GetAllDepartments();
+					List<Department> departments = client.GetAllDepartments();
+					foreach (Department department in departments)
+					{
+						Console.WriteLine();
+						Console.WriteLine("-Department-");
+						Console.WriteLine($"DName: {department.DName}");
+						Console.WriteLine($"DNumber: {department.DNumber}");
+						Console.WriteLine($"MgrSSN:	{department.MgrSSN}");
+						Console.WriteLine($"MgrStartDate: {department.MgrStartDate}");
+						Console.WriteLine($"EmpCount: {department.EmpCount}");
+						Console.WriteLine();
+					}
 					break;
 				}
 			}
